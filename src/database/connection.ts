@@ -1,8 +1,7 @@
 import { MongoClient, Db, MongoCallback, MongoError } from 'mongodb';
 
 const url = 'mongodb://localhost:27017';
-let db: Db;
-const dbName = 'Ambev';
+let db: MongoClient;
 
 export const initDb = (callback: MongoCallback<MongoClient>) => {
   if (db) {
@@ -11,8 +10,8 @@ export const initDb = (callback: MongoCallback<MongoClient>) => {
   }
 
   MongoClient.connect(url).then((client: MongoClient) => {
-    db = client.db(dbName);
-    callback(new MongoError('ok'), client);
+    db = client;
+    callback(new MongoError('ok'), db);
   });
 };
 
