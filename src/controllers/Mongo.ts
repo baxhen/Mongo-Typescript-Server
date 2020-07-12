@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { InsertOneWriteOpResult, ObjectId, UpdateWriteOpResult } from 'mongodb';
 import { getDb } from '../database/connection';
+const dbName = 'Ambev';
 export class Mongo {
   static insertOne = (
     insertObject: object,
@@ -8,7 +9,7 @@ export class Mongo {
     collection: string
   ) => {
     getDb()
-      .db('Ambev')
+      .db(dbName)
       .collection(collection)
       .insertOne(insertObject)
       .then((response: InsertOneWriteOpResult<{ _id: ObjectId }>) => {
@@ -22,7 +23,7 @@ export class Mongo {
   static fetchOne = (req: Request, res: Response, collection: string) => {
     const _id = new ObjectId(req.params.id);
     getDb()
-      .db('Ambev')
+      .db(dbName)
       .collection(collection)
       .findOne({ _id })
       .then((response: object) => {
@@ -35,7 +36,7 @@ export class Mongo {
 
   static fetchMany = (req: Request, res: Response, collection: string) => {
     getDb()
-      .db('Ambev')
+      .db(dbName)
       .collection(collection)
       .find()
       .toArray()
@@ -51,7 +52,7 @@ export class Mongo {
     const _id = new ObjectId(req.params.id);
     const updateOne = req.body;
     getDb()
-      .db('Ambev')
+      .db(dbName)
       .collection(collection)
       .updateOne({ _id }, { $set: updateOne })
       .then((response: UpdateWriteOpResult) => {

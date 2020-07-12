@@ -12,8 +12,8 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
-initDb((error: MongoError, result: MongoClient) => {
-  if (error.message !== 'ok') {
+initDb((error: MongoError | null) => {
+  if (error) {
     console.log(error);
   } else {
     app.listen(3333);
