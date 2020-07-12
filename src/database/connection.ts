@@ -1,11 +1,12 @@
-import { MongoClient, MongoCallback, MongoError } from 'mongodb';
+import { MongoClient } from 'mongodb';
+import { MyCallback } from '../utils';
 
 const url = 'mongodb://localhost:27017';
 let db: MongoClient;
 
-export const initDb = (callback: MongoCallback<MongoClient>): void => {
+export const initDb = (callback: MyCallback<MongoClient>) => {
   if (db) {
-    return callback(new MongoError('Database is already initialized'), db);
+    callback(null, db);
   }
 
   MongoClient.connect(url).then((client: MongoClient) => {
