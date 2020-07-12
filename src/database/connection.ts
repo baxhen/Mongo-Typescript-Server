@@ -6,7 +6,7 @@ let db: MongoClient;
 
 export const initDb = (callback: MyCallback<MongoClient>) => {
   if (db) {
-    callback(null, db);
+    callback(Error('Database is already initialized'), db);
   }
 
   MongoClient.connect(url).then((client: MongoClient) => {
