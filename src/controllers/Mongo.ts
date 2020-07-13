@@ -62,4 +62,48 @@ export class Mongo {
         console.log(err);
       });
   };
+
+  static fetchOneFiltered = (
+    req: Request,
+    res: Response,
+    collection: string,
+    filter: object
+  ) => {
+    const _id = new ObjectId(req.params.id);
+    const projection = {
+      fields: filter,
+    };
+    getDb()
+      .db(dbName)
+      .collection(collection)
+      .findOne({ _id }, projection)
+      .then((response: object) => {
+        res.send(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  static fetchManyFiltered = (
+    req: Request,
+    res: Response,
+    collection: string,
+    filter: object
+  ) => {
+    const projection = {
+      fields: filter,
+    };
+    getDb()
+      .db(dbName)
+      .collection(collection)
+      .find({}, projection)
+      .toArray()
+      .then((array: object[]) => {
+        res.send(array);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 }

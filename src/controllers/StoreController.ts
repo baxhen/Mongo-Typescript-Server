@@ -16,3 +16,7 @@ export const fetchStores = (req: Request, res: Response) => {
 export const updateStore = (req: Request, res: Response) => {
   Mongo.updateOne(req, res, 'Stores');
 };
+
+export const fetchMenu = (req: Request, res: Response) => {
+  Mongo.fetchOneFiltered(req, res, 'Stores', { menu: 1, _id: 0 });
+};

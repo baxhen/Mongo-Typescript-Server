@@ -9,6 +9,8 @@ routes.get('/store/:id', StoreController.fetchStore);
 routes.get('/store', StoreController.fetchStores);
 routes.patch('/store/:id', StoreController.updateStore);
 
+routes.get('/menu/:id', StoreController.fetchMenu);
+
 routes.post('/user', UserController.insertUser);
 routes.get('/user/:id', UserController.fetchUser);
 routes.get('/user', UserController.fetchUsers);
