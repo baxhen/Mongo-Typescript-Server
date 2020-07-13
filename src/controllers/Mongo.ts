@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import _ from 'lodash';
 import { InsertOneWriteOpResult, ObjectId, UpdateWriteOpResult } from 'mongodb';
 import { getDb } from '../database/connection';
 const dbName = 'Ambev';
@@ -50,11 +51,11 @@ export class Mongo {
 
   static updateOne = (req: Request, res: Response, collection: string) => {
     const _id = new ObjectId(req.params.id);
-    const updateOne = req.body;
+    const newValue = req.body;
     getDb()
       .db(dbName)
       .collection(collection)
-      .updateOne({ _id }, { $set: updateOne })
+      .updateOne({ _id }, { $set: newValue })
       .then((response: UpdateWriteOpResult) => {
         res.send(response.result);
       })
@@ -71,7 +72,7 @@ export class Mongo {
   ) => {
     const _id = new ObjectId(req.params.id);
     const projection = {
-      fields: filter,
+      projection: filter,
     };
     getDb()
       .db(dbName)
@@ -101,6 +102,58 @@ export class Mongo {
       .toArray()
       .then((array: object[]) => {
         res.send(array);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  static updateOneObjectKeyValue = (
+    req: Request,
+    res: Response,
+    collection: string,
+    fieldToUpdate: string,
+    fieldUpdateQuery: string,
+    filterQuery: object
+  ) => {
+    const updateQuery = {
+      $set: { [fieldUpdateQuery]: req.body[fieldToUpdate] },
+    };
+
+    getDb()
+      .db(dbName)
+      .collection(collection)
+      .updateOne(filterQuery, updateQuery)
+      .then((response: UpdateWriteOpResult) => {
+        res.send(response.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  static updateOneSwitchTwoObjectKeysValues = (
+    req: Request,
+    res: Response,
+    collection: string,
+    firstFieldKeyName: string,
+    SecondFieldKeyName: string,
+    fieldUpdateQuery: string[],
+    filterQuery: object
+  ) => {
+    const updateQuery = {
+      $set: {
+        [fieldUpdateQuery[0]]: req.body[firstFieldKeyName].value,
+        [fieldUpdateQuery[1]]: req.body[SecondFieldKeyName].value,
+      },
+    };
+
+    getDb()
+      .db(dbName)
+      .collection(collection)
+      .updateOne(filterQuery, updateQuery)
+      .then((response: UpdateWriteOpResult) => {
+        res.send(response.result);
       })
       .catch((err) => {
         console.log(err);

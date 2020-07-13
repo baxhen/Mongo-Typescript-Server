@@ -10,6 +10,11 @@ routes.get('/store', StoreController.fetchStores);
 routes.patch('/store/:id', StoreController.updateStore);
 
 routes.get('/menu/:id', StoreController.fetchMenu);
+routes.patch('/menu/:_id', StoreController.updateSectionPosition);
+routes.patch(
+  '/menu-switch',
+  StoreController.updateSectionsSwitchObjectsPositions
+);
 
 routes.post('/user', UserController.insertUser);
 routes.get('/user/:id', UserController.fetchUser);

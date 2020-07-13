@@ -22,8 +22,7 @@ export interface Contacts {
   whatsapp: string;
 }
 export interface Menu {
-  name: string;
-  sections?: SectionsEntity[] | null;
+  menu: { name: string; sections?: SectionsEntity[] | null };
 }
 export interface SectionsEntity {
   _id: string;
