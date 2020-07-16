@@ -57,10 +57,11 @@ export class Mongo {
       .collection(collection)
       .updateOne({ _id }, { $set: newValue })
       .then((response: UpdateWriteOpResult) => {
-        res.send(response.result);
+        res.send({ message: 'Successfully updated', isUpdated: true });
       })
       .catch((err) => {
         console.log(err);
+        res.send({ message: 'Document not updated', isUpdated: false });
       });
   };
 
@@ -102,58 +103,6 @@ export class Mongo {
       .toArray()
       .then((array: object[]) => {
         res.send(array);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  static updateOneObjectKeyValue = (
-    req: Request,
-    res: Response,
-    collection: string,
-    fieldToUpdate: string,
-    fieldUpdateQuery: string,
-    filterQuery: object
-  ) => {
-    const updateQuery = {
-      $set: { [fieldUpdateQuery]: req.body[fieldToUpdate] },
-    };
-
-    getDb()
-      .db(dbName)
-      .collection(collection)
-      .updateOne(filterQuery, updateQuery)
-      .then((response: UpdateWriteOpResult) => {
-        res.send(response.result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  static updateOneSwitchTwoObjectKeysValues = (
-    req: Request,
-    res: Response,
-    collection: string,
-    firstFieldKeyName: string,
-    SecondFieldKeyName: string,
-    fieldUpdateQuery: string[],
-    filterQuery: object
-  ) => {
-    const updateQuery = {
-      $set: {
-        [fieldUpdateQuery[0]]: req.body[firstFieldKeyName].value,
-        [fieldUpdateQuery[1]]: req.body[SecondFieldKeyName].value,
-      },
-    };
-
-    getDb()
-      .db(dbName)
-      .collection(collection)
-      .updateOne(filterQuery, updateQuery)
-      .then((response: UpdateWriteOpResult) => {
-        res.send(response.result);
       })
       .catch((err) => {
         console.log(err);

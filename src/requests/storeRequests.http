@@ -1,0 +1,57 @@
+POST http://localhost:3333/store HTTP/1.1
+content-type: application/json
+
+{
+	"name": "Bar da Fernanda",
+  "ownerName": "Fernanda",
+  "password": "123",
+  "storeDescription": "Melhor bar para tomar um chopinho",
+  "imgsUrls": ["https://cdn.pixabay.com/photo/2013/11/12/01/29/bar-209148__340.jpg"],
+  "address": {
+		"street": "Rua Tomas de Aquino",
+    "streetNumber": "210A",
+    "state": "SP",
+    "city": "Osasco",
+    "lat": -23,
+    "lng": 46
+  },
+  "contacts": {
+    "email": "fernanda@gmail.com",
+    "whatsapp": "11 975886479"
+  }
+}
+
+### Get All Stores
+http://localhost:3333/store
+
+### Get One Store
+http://localhost:3333/store/5f10e0df7085cf03e42ccfc2
+
+### Update Store Could be A key value or all store
+
+PATCH http://localhost:3333/store/5f10e0df7085cf03e42ccfc2 HTTP/1.1
+content-type: application/json
+
+{	
+ "menu":{
+	 "name":"Meu Cardapio",
+	 "sections":[		 
+		 {
+			 "_id":"01",
+			 "position":1,
+			 "name":"Bebidas",
+			 "products":[
+				 {
+					 "_id":"product_1",	
+					 "name":"Cerveja Skol Pilsen Lata 350ml",
+					 "price":2.39,
+					 "desscription":"A Cerveja Skol Pilsen é uma típica cerveja clara, com aroma refinado e sabor leve e suave. A Skol Pilsen Lata 350ml é a cerveja que desce redondo e é a pedida ideal para festas, baladas, praia e para quando você quer refrescar os dias quentes do verão.",
+					 "imgUrl":"https://images-americanas.b2w.io/produtos/01/00/img1/104947/6/104947668_1GG.jpg",
+					 "pointValue":10
+				 }
+			 ]			 
+		 }		 
+	 ]	
+ }  
+}
+
