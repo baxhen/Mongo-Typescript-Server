@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export interface Store {
   _id: string;
   name: string;
@@ -34,7 +36,7 @@ export interface ProductsEntity {
   _id: string;
   name: string;
   price: number;
-  desscription: string;
+  description: string;
   imgUrl: string;
   pointValue: number;
 }
@@ -50,4 +52,28 @@ interface User {
   };
   imgUrl: string;
   cards: object[];
+}
+
+interface Orders {
+  _id: ObjectId;
+  userId: ObjectId;
+  storeId: ObjectId;
+  orderDetail: {
+    products: [
+      {
+        productDetail: {
+          timeOpenOrder: Date;
+          timeCloseOrder: Date | null;
+          name: string;
+          price: number;
+          description: string;
+          imgUrl: string;
+        };
+      }
+    ];
+    bill: {
+      paymentMethod: string;
+      isClosed: boolean;
+    };
+  };
 }

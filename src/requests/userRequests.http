@@ -1,0 +1,45 @@
+POST http://localhost:3333/user HTTP/1.1
+content-type: application/json
+
+{
+	"name": "Leonardo",
+  "password": "123",  
+  "imgUrl": "https://cdn.pixabay.com/photo/2013/11/12/01/29/bar-209148__340.jpg",  
+  "contacts": {
+    "email": "leo@gmail.com",
+    "whatsapp": "11 975886479"
+  },
+	"cards":[
+		{
+			"cardNumber":1234567890,
+			"cvv":121
+		}
+	],
+	"points":15,
+	"experience":12
+	
+}
+
+### Get All users
+http://localhost:3333/user
+
+### Get One user
+http://localhost:3333/user/5f0aff0dabd3d42fe8c86d8a
+
+### Update user Could be A key value or all user
+
+PATCH http://localhost:3333/user/5f0aff0dabd3d42fe8c86d8a HTTP/1.1
+content-type: application/json
+
+{
+	"name": "Gustavo",
+  "password": "12345678",  
+  "imgUrl": "https://cdn.pixabay.com/photo/2018/04/18/18/56/user-3331256__340.png",  
+  "contacts": {
+    "email": "gustavo@gmail.com",
+    "whatsapp": "11 975886479"
+  },
+	"points":2,
+	"experience":35
+	
+}

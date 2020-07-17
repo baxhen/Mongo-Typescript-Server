@@ -1,0 +1,66 @@
+POST http://localhost:3333/order HTTP/1.1
+content-type: application/json
+
+{
+	"userId":"5f11e1576822ec08388815f1",
+	"storeId": "5f11e2a34a481207044c636f",
+	"orderDetail":{
+		"products":[
+			{
+				"productDetail":
+				{
+				 "timeOpenOrder":"Fri, 17 Jul 2020 13:27:22 GMT",
+				 "timeCloseOrder":"Fri, 17 Jul 2020 13:40:06 GMT",
+					"name": "Cerveja Skol Pilsen Lata 350ml",
+          "price": 2.39,
+          "description": "A Cerveja Skol Pilsen é uma típica cerveja clara, com aroma refinado e sabor leve e suave. A Skol Pilsen Lata 350ml é a cerveja que desce redondo e é a pedida ideal para festas, baladas, praia e para quando você quer refrescar os dias quentes do verão.",
+          "imgUrl": "https://images-americanas.b2w.io/produtos/01/00/img1/104947/6/104947668_1GG.jpg"
+			  }
+			}
+		],
+		"bill":{
+			"paymentMethod":"Debit Card",
+			"isCloseed":true
+		}
+	}
+}
+
+### Fetch Order by userId or storeId
+
+GET  http://localhost:3333/order/5f11e1576822ec08388815f1 HTTP/1.1
+content-type: application/json
+
+{
+	"fieldName":"userId"
+}
+
+### Fecth all Orders
+http://localhost:3333/order
+
+
+### Update one Order
+
+PATCH  http://localhost:3333/order/5f11e2b44a481207044c6370 HTTP/1.1
+content-type: application/json
+
+{
+	"orderDetail":{
+		"products":[
+			{
+				"productDetail":
+				{
+				 "timeOpenOrder":"Fri, 17 Jul 2020 13:27:22 GMT",
+				 "timeCloseOrder":"Fri, 17 Jul 2020 13:40:06 GMT",
+					"name": "Cerveja Skol Pilsen Lata 350ml",
+          "price": 4.39,
+          "description": "A Cerveja Skol Pilsen é uma típica cerveja clara, com aroma refinado e sabor leve e suave. A Skol Pilsen Lata 350ml é a cerveja que desce redondo e é a pedida ideal para festas, baladas, praia e para quando você quer refrescar os dias quentes do verão.",
+          "imgUrl": "https://images-americanas.b2w.io/produtos/01/00/img1/104947/6/104947668_1GG.jpg"
+			  }
+			}
+		],
+		"bill":{
+			"paymentMethod":"Debit Card",
+			"isCloseed":true
+		}
+	}
+}

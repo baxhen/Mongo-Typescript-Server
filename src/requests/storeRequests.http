@@ -25,17 +25,17 @@ content-type: application/json
 http://localhost:3333/store
 
 ### Get One Store
-http://localhost:3333/store/5f10e0df7085cf03e42ccfc2
+http://localhost:3333/store/5f11b22e7180db3530ff3911
 
 ### Update Store Could be A key value or all store
 
-PATCH http://localhost:3333/store/5f10e0df7085cf03e42ccfc2 HTTP/1.1
+PATCH http://localhost:3333/store/5f11e2a34a481207044c636f HTTP/1.1
 content-type: application/json
 
 {	
  "menu":{
 	 "name":"Meu Cardapio",
-	 "sections":[		 
+	 "sections":[		 	
 		 {
 			 "_id":"01",
 			 "position":1,
@@ -45,7 +45,7 @@ content-type: application/json
 					 "_id":"product_1",	
 					 "name":"Cerveja Skol Pilsen Lata 350ml",
 					 "price":2.39,
-					 "desscription":"A Cerveja Skol Pilsen é uma típica cerveja clara, com aroma refinado e sabor leve e suave. A Skol Pilsen Lata 350ml é a cerveja que desce redondo e é a pedida ideal para festas, baladas, praia e para quando você quer refrescar os dias quentes do verão.",
+					 "description":"A Cerveja Skol Pilsen é uma típica cerveja clara, com aroma refinado e sabor leve e suave. A Skol Pilsen Lata 350ml é a cerveja que desce redondo e é a pedida ideal para festas, baladas, praia e para quando você quer refrescar os dias quentes do verão.",
 					 "imgUrl":"https://images-americanas.b2w.io/produtos/01/00/img1/104947/6/104947668_1GG.jpg",
 					 "pointValue":10
 				 }

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Mongo } from './Mongo';
 
-const collection = 'Stores';
+const collection = 'stores';
 
 export const insertStore = (req: Request, res: Response) => {
   Mongo.insertOne(req.body, res, collection);
